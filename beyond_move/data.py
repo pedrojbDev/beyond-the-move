@@ -63,6 +63,92 @@ REASONS = {
     },
 }
 
+EXTRA_TRAIN_REASONS = {
+    "troca": (
+        "Se a gente trocar as damas, o jogo fica menos complicado.",
+        "Quero jogar um final com poucas peças.",
+        "Minha ideia era ficar sem as duas torres.",
+        "Tirei as peças mais fortes dos dois lados.",
+        "Queria que cada um ficasse com uma peça a menos.",
+        "Com as rainhas fora, fica mais tranquilo.",
+        "Era para simplificar, não para ganhar material.",
+        "Meu plano era reduzir a quantidade de peças.",
+        "Preferi uma posição mais simples sem a dama deles e a minha.",
+        "Deixo ele tomar a minha e dou a dele em troca.",
+        "Estou na frente e queria chegar logo no final.",
+        "Pensei que uma troca equilibrada ajudava meu final.",
+    ),
+    "captura": (
+        "Essa peça ficou solta, pensei em pegar.",
+        "Queria levar o bispo sem dar nada em troca.",
+        "Pareceu que ninguém defendia o cavalo.",
+        "Eu conto uma peça grátis aqui.",
+        "Achei que ele não podia tomar de volta.",
+        "Fui atrás da torre que ele largou.",
+        "Quero sair dessa jogada com uma peça a mais.",
+        "A peça ficou pendurada, por isso eu comi.",
+        "Não vi de onde poderia vir a recaptura.",
+        "Tentei aproveitar o peão que ficou sozinho.",
+        "Quis ficar com mais material do que ele.",
+        "Não achei que perderia nada se pegasse o bispo.",
+    ),
+    "ataque": (
+        "Quero apertar o rei adversário.",
+        "Tentei deixar o rei deles preso.",
+        "Pensei que o rei deles não teria espaço.",
+        "Quero forçar a defesa do rei.",
+        "A ideia é tirar as casas de fuga do rei.",
+        "Meu objetivo era colocar o outro rei em perigo.",
+        "Preferi perseguir o rei com as peças pesadas.",
+        "Quero fazer as pretas responderem a uma ameaça.",
+        "Joguei preparando um ataque direto.",
+        "Pensei em deixar o mate ameaçado.",
+        "Queria dar xeques seguidos até chegar perto do rei.",
+        "O foco era atacar, mesmo sem capturar nada.",
+    ),
+    "defesa": (
+        "Meu cavalo estava pendurado e eu queria segurar.",
+        "Quis deixar minha torre fora de perigo.",
+        "Estava tentando bloquear a ameaça na minha ala.",
+        "Preferi tirar a peça atacada dali.",
+        "Tentei proteger meu rei primeiro.",
+        "Fiz isso para ele não pegar meu bispo.",
+        "Quero manter meu peão a salvo.",
+        "Joguei mais atrás para não perder material.",
+        "Eu estava sob ataque e resolvi recuar.",
+        "Minha ideia era evitar o xeque que eu estava vendo.",
+        "Pus uma peça para cobrir a outra que ele estava olhando.",
+        "Achei que precisava salvar minha peça antes de atacar.",
+    ),
+    "plano": (
+        "Foi na intuição, não calculei nenhuma resposta.",
+        "Só movi a peça, sem objetivo claro.",
+        "Não tive um plano para esse lance.",
+        "Eu chutaria essa jogada, não sei justificar.",
+        "Fiquei sem saber o que fazer e joguei.",
+        "Não cheguei a olhar o que vinha depois.",
+        "Foi no reflexo.",
+        "Não sei bem o que eu estava tentando.",
+        "Eu fiz por hábito.",
+        "Não vi uma ideia específica.",
+        "Me pareceu um lance normal e só.",
+        "Mexi a peça sem montar estratégia.",
+    ),
+}
+
+
+def augment_training(splits: dict[str, list[dict]]) -> dict[str, list[dict]]:
+    rng = random.Random(2718)
+    return {
+        **splits,
+        "train": splits["train"]
+        + [
+            {**row, "reason": reason}
+            for row in splits["train"]
+            for reason in rng.sample(EXTRA_TRAIN_REASONS[row["focus"]], 3)
+        ],
+    }
+
 
 def game_id(url: str) -> str:
     parsed = urlsplit(url)
@@ -147,12 +233,15 @@ def main() -> None:
     cli.add_argument("archive", type=Path)
     cli.add_argument("sha256")
     cli.add_argument("--output", type=Path, default=Path("data/splits.json"))
+    cli.add_argument("--augment-train", action="store_true")
     args = cli.parse_args()
     with args.archive.open("rb") as file:
         digest = hashlib.file_digest(file, "sha256").hexdigest()
     if digest != args.sha256:
         cli.error(f"Dataset checksum differs: {digest}")
     splits = build_rows(read_positions(args.archive))
+    if args.augment_train:
+        splits = augment_training(splits)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps({"source_sha256": digest, "splits": splits}, ensure_ascii=False, indent=2),

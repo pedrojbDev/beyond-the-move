@@ -41,3 +41,17 @@ def test_pair_metric_requires_correct_labels_on_both_reasons():
     assert score(rows, ["troca", "troca"])["pair_accuracy"] == 0
     assert score(rows, ["troca", "captura"])["pair_accuracy"] == 1
     assert score(rows, [None, "captura"])["invalid_rate"] == 0.5
+
+
+def test_train_augmentation_leaves_validation_and_test_unchanged():
+    from beyond_move.data import augment_training
+
+    source = {
+        split: [{"focus": "troca", "reason": "A", "key": split}]
+        for split in ("train", "validation", "test")
+    }
+    augmented = augment_training(source)
+    assert augmented["validation"] == source["validation"]
+    assert augmented["test"] == source["test"]
+    assert len(augmented["train"]) > len(source["train"])
+    assert {r["key"] for r in augmented["train"]} == {"train"}
