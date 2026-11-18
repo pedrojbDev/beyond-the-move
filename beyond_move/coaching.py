@@ -35,11 +35,18 @@ def parse_hint(text: str) -> tuple[str, str] | None:
     hint = hint.strip()
     if not divider or label.strip() not in HINTS or not 18 <= len(hint) <= 220:
         return None
-    if (
-        "\n" in hint
-        or "|" in hint
-        or not hint.endswith("?")
-        or re.search(r"(?i)(?:[a-h][1-8])|(?:O-O)|(?:0-0)", hint)
-    ):
+    if "\n" in hint or "|" in hint or not hint.endswith("?") or has_notation(hint):
         return None
     return label.strip(), hint
+
+
+def has_notation(text: str) -> bool:
+    return bool(re.search(r"(?i)(?:[a-h][1-8])|(?:[O0][-–][O0])", text))
+
+
+def teaching_hint(label: str, facts: str) -> str:
+    if label == "captura" and "recaptura=sim" in facts:
+        return "Se o adversário recapturar sua peça, você ainda sai ganhando material?"
+    if label == "ataque" and "xeque=sim" in facts:
+        return "Antes de continuar o ataque, de quantas maneiras o rei pode sair do xeque?"
+    return HINTS[label]

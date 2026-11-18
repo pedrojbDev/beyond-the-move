@@ -76,7 +76,13 @@ def replay(board: chess.Board, moves: tuple[str, ...]) -> list[dict[str, str]]:
 
 
 def facts_for(board: chess.Board, move: chess.Move) -> str:
+    after = board.copy(stack=False)
+    after.push(move)
+    recapture = any(
+        reply.to_square == move.to_square and after.is_capture(reply) for reply in after.legal_moves
+    )
     return (
         f"captura={'sim' if board.is_capture(move) else 'não'}; "
-        f"xeque={'sim' if board.gives_check(move) else 'não'}"
+        f"xeque={'sim' if board.gives_check(move) else 'não'}; "
+        f"recaptura={'sim' if recapture else 'não'}"
     )
