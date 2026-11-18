@@ -1,0 +1,362 @@
+[
+  {
+    "focus": "troca",
+    "reason": "A ideia era que cada lado entregasse uma peça e o jogo ficasse mais simples.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Na hora eu achei que dava pra levar aquela peça sem perder nenhuma.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Quis botar a peça que estava em risco a salvo.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Pareceu natural, mas não tenho um motivo específico.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "A ideia era que cada lado entregasse uma peça e o jogo ficasse mais simples.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Eu via uma peça dando sopa e queria sair no lucro.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Tentei apertar o rei e forçar uma resposta.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Tentei apagar o incêndio do meu lado do tabuleiro.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Mexi meio no automático.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Eu queria reduzir a confusão tirando uma peça pesada de cada lado.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Eu via uma peça dando sopa e queria sair no lucro.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Tentei apagar o incêndio do meu lado do tabuleiro.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Não tenho certeza do que eu queria com isso.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Eu queria reduzir a confusão tirando uma peça pesada de cada lado.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Parece que o adversário deixou uma peça sobrando pra mim.",
+    "base": "categoria|pergunta",
+    "lora": "captura|Se o adversário recapturar sua peça, você ainda sai ganhando material?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Quis botar a peça que estava em risco a salvo.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Mexi meio no automático.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "A ideia era que cada lado entregasse uma peça e o jogo ficasse mais simples.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Parece que o adversário deixou uma peça sobrando pra mim.",
+    "base": "categoria|pergunta",
+    "lora": "captura|Se o adversário recapturar sua peça, você ainda sai ganhando material?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Eu precisava tirar minha peça da mira.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Pareceu natural, mas não tenho um motivo específico.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Eu queria reduzir a confusão tirando uma peça pesada de cada lado.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Na hora eu achei que dava pra levar aquela peça sem perder nenhuma.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Eu precisava tirar minha peça da mira.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Não tenho certeza do que eu queria com isso.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Eu queria reduzir a confusão tirando uma peça pesada de cada lado.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Eu via uma peça dando sopa e queria sair no lucro.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Quero encurralar o rei antes que ele consiga escapar.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Eu precisava tirar minha peça da mira.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Pareceu natural, mas não tenho um motivo específico.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Eu queria reduzir a confusão tirando uma peça pesada de cada lado.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Parece que o adversário deixou uma peça sobrando pra mim.",
+    "base": "categoria|pergunta",
+    "lora": "captura|Se o adversário recapturar sua peça, você ainda sai ganhando material?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Quis botar a peça que estava em risco a salvo.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Não tenho certeza do que eu queria com isso.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Eu queria reduzir a confusão tirando uma peça pesada de cada lado.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Eu via uma peça dando sopa e queria sair no lucro.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Eu precisava tirar minha peça da mira.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Pareceu natural, mas não tenho um motivo específico.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "A ideia era que cada lado entregasse uma peça e o jogo ficasse mais simples.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Na hora eu achei que dava pra levar aquela peça sem perder nenhuma.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Minha intenção era deixar o rei deles sem saída.",
+    "base": "categoria|pergunta",
+    "lora": "defesa|O lance cobre a ameaça imediata ou só protege uma das peças atacadas?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Eu precisava tirar minha peça da mira.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Mexi meio no automático.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Se as duas rainhas saíssem, o resto ficaria mais fácil de jogar.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Eu via uma peça dando sopa e queria sair no lucro.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Tentei apertar o rei e forçar uma resposta.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Eu precisava tirar minha peça da mira.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Mexi meio no automático.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  },
+  {
+    "focus": "troca",
+    "reason": "Se as duas rainhas saíssem, o resto ficaria mais fácil de jogar.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "captura",
+    "reason": "Na hora eu achei que dava pra levar aquela peça sem perder nenhuma.",
+    "base": "categoria|pergunta",
+    "lora": "troca|Se o adversário aceitar a troca, o que muda nas peças que continuam no tabuleiro?"
+  },
+  {
+    "focus": "ataque",
+    "reason": "Tentei apertar o rei e forçar uma resposta.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "defesa",
+    "reason": "Tentei apagar o incêndio do meu lado do tabuleiro.",
+    "base": "categoria|pergunta",
+    "lora": "ataque|Se o adversário responder com um lance forçado, sua ameaça ainda funciona?"
+  },
+  {
+    "focus": "plano",
+    "reason": "Não tenho certeza do que eu queria com isso.",
+    "base": "categoria|pergunta",
+    "lora": "plano|Qual seria a resposta mais incômoda do adversário a essa ideia?"
+  }
+]
