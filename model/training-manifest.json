@@ -1,0 +1,21 @@
+{
+  "training_type": "fine-tuning",
+  "dataset_license": "CC0-1.0",
+  "dataset_sha256": "7b0d235fa40cfd7fdb7df1fec56a96b3b6ee1496b32ed2eb05be90d0ebf94253",
+  "split_sha256": "afa3da41dc030b5be7785816e4c898b8a1683c4224d087bdb43f89d15aa54c08",
+  "training_commit": "e34e344375f26c22dafcf741f7f97aa0e8534414",
+  "split_method": "seed-42 unique source game and canonical FEN; disjoint rationale pools",
+  "artifact_sha256": "178f754bbdc801b316e325a5637025a514071e671e221849483ab68eb2db0e56",
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "base_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "base_weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+  "seed": 42,
+  "training_steps": 180,
+  "learning_rate": 0.0006,
+  "initial_loss": 3.5802395343780518,
+  "final_loss": 0.01956040784716606,
+  "trainable_parameters": 540672,
+  "duration_seconds": 434.21,
+  "peak_rss_kib": 3262752,
+  "torch": "2.7.1+cpu"
+}

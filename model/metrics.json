@@ -1,0 +1,80 @@
+{
+  "split": "test",
+  "rows": 60,
+  "groups": 12,
+  "base": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "pair_accuracy": 0.0,
+    "invalid_rate": 1.0,
+    "confusion": {
+      "troca": {
+        "invalid": 12
+      },
+      "captura": {
+        "invalid": 12
+      },
+      "ataque": {
+        "invalid": 12
+      },
+      "defesa": {
+        "invalid": 12
+      },
+      "plano": {
+        "invalid": 12
+      }
+    },
+    "explicit_notation_rate": 0.0
+  },
+  "lora": {
+    "accuracy": 0.5166666666666667,
+    "macro_f1": 0.4825974025974026,
+    "pair_accuracy": 0.0,
+    "invalid_rate": 0.0,
+    "confusion": {
+      "troca": {
+        "troca": 12
+      },
+      "captura": {
+        "troca": 9,
+        "captura": 3
+      },
+      "ataque": {
+        "defesa": 8,
+        "ataque": 4
+      },
+      "defesa": {
+        "ataque": 12
+      },
+      "plano": {
+        "plano": 12
+      }
+    },
+    "explicit_notation_rate": 0.0
+  },
+  "rules": {
+    "accuracy": 0.2,
+    "macro_f1": 0.06666666666666667,
+    "pair_accuracy": 0.0,
+    "invalid_rate": 0.0,
+    "confusion": {
+      "troca": {
+        "plano": 12
+      },
+      "captura": {
+        "plano": 12
+      },
+      "ataque": {
+        "plano": 12
+      },
+      "defesa": {
+        "plano": 12
+      },
+      "plano": {
+        "plano": 12
+      }
+    },
+    "explicit_notation_rate": 0.0
+  },
+  "duration_seconds": 125.46
+}

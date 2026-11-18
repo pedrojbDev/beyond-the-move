@@ -55,6 +55,44 @@ def test_missing_engine_for_reveal_is_distinct():
         assert response.status_code == 503
 
 
+def test_adapter_failure_degrades_to_a_labeled_fallback():
+    from beyond_move.app import create_app
+
+    def unavailable(*_):
+        raise RuntimeError("model unavailable")
+
+    with TestClient(create_app(coach=unavailable)) as c:
+        row = first(c)
+        body = {"case_id": row["id"], "move": row["example_move"], "reason": "Quero trocar"}
+        response = c.post("/api/hint", json=body)
+        assert response.status_code == 200
+        assert response.json()["source"] == "rules"
+
+
+def test_single_screen_is_portuguese_and_serves_local_assets():
+    with client() as c:
+        html = c.get("/")
+        assert html.status_code == 200
+        assert 'lang="pt-BR"' in html.text
+        assert "Além do Lance" in html.text
+        assert 'id="keyboard-move"' in html.text
+        assert c.get("/static/app.js").status_code == 200
+        assert c.get("/static/board/assets/chessboard.css").status_code == 200
+        assert c.get("/static/board/assets/pieces/standard.svg").status_code == 200
+
+
+def test_preview_is_only_the_selected_move():
+    with client() as c:
+        row = first(c)
+        response = c.post("/api/preview", json={"case_id": row["id"], "move": row["example_move"]})
+        assert response.status_code == 200
+        result = response.json()
+        assert set(result) == {"fen", "uci", "san"}
+        expected = chess.Board(row["fen"])
+        expected.push_uci(row["example_move"])
+        assert result["fen"] == expected.fen()
+
+
 def test_black_board_replay_uses_san_and_resulting_fens():
     from beyond_move.domain import replay
 

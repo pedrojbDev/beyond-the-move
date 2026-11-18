@@ -234,12 +234,22 @@ def main() -> None:
     cli.add_argument("sha256")
     cli.add_argument("--output", type=Path, default=Path("data/splits.json"))
     cli.add_argument("--augment-train", action="store_true")
+    cli.add_argument(
+        "--position-sample",
+        action="store_true",
+        help="Read a frozen JSON sample instead of the full Lichess archive.",
+    )
     args = cli.parse_args()
     with args.archive.open("rb") as file:
         digest = hashlib.file_digest(file, "sha256").hexdigest()
     if digest != args.sha256:
         cli.error(f"Dataset checksum differs: {digest}")
-    splits = build_rows(read_positions(args.archive))
+    if args.position_sample:
+        sample = json.loads(args.archive.read_text(encoding="utf-8"))
+        digest, positions = sample["source_sha256"], sample["positions"]
+    else:
+        positions = read_positions(args.archive)
+    splits = build_rows(positions)
     if args.augment_train:
         splits = augment_training(splits)
     args.output.parent.mkdir(parents=True, exist_ok=True)
