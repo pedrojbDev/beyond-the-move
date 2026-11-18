@@ -1,4 +1,4 @@
-// Run against a local Uvicorn instance with Stockfish and the released adapter.
+// Run against local Uvicorn with Stockfish; no model download is needed.
 import assert from "node:assert/strict";
 import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -11,8 +11,8 @@ const browser = await puppeteer.launch({
   browser: "firefox",
   executablePath: process.env.FIREFOX_PATH ?? "/usr/bin/firefox",
   headless: true,
-  env: { ...process.env, MOZ_HEADLESS: "1" },
 });
+
 try {
   const page = await browser.newPage();
   const errors = [];
@@ -25,33 +25,51 @@ try {
   await page.setViewport({ width: 1240, height: 1000 });
   await page.goto(process.env.DEMO_URL ?? "http://127.0.0.1:8000/");
   await page.waitForSelector("#board svg use");
-  await page.waitForFunction(() => !document.querySelector("#example").disabled);
-  await page.click('#board g[data-piece="bq"][data-square="e5"]');
-  await page.click('#board rect[data-square="e2"]');
-  await page.waitForFunction(() => document.querySelector("#move-readout").textContent.includes("Qxe2+"));
+  await page.waitForFunction(() => document.querySelector("#turn").textContent.includes("Sua vez · brancas"));
+
   async function ask(reason) {
     await page.$eval("#reason", (field, value) => {
       field.value = value;
       field.dispatchEvent(new Event("input", { bubbles: true }));
     }, reason);
     await page.click("#ask");
-    await page.waitForFunction(() => !document.querySelector("#feedback").hidden, { timeout: 45000 });
-    assert.match(await page.$eval("#source", (node) => node.textContent), /MODELO AJUSTADO/);
+    await page.waitForFunction(() => !document.querySelector("#feedback").hidden);
     return page.$eval("#hint", (node) => node.textContent);
   }
-  const first = await ask("Quero trocar as damas para simplificar.");
-  const second = await ask("Achei que essa peça estava de graça.");
-  assert.notEqual(first, second);
-  assert.match(first, /troca/);
-  assert.match(second, /recapturar/);
+
+  await page.click('#board g[data-piece="wb"][data-square="f1"]');
+  await page.waitForFunction(() => document.querySelector("#piece").value === "f1");
+  assert.match(await ask("O que faço com esse bispo agora?"), /bispo em f1 não tem lance legal/);
+  await page.click('#board g[data-piece="wp"][data-square="e2"]');
+  await page.click('#board rect[data-square="e4"]');
+  await page.waitForFunction(() => document.querySelector("#move-readout").textContent.includes("Bot jogou"));
+  await page.waitForSelector('#board g[data-piece="wp"][data-square="e4"] use');
+  assert.match(await page.$eval("#turn", (node) => node.textContent), /Sua vez · brancas/);
+  await page.click('#board g[data-piece="wb"][data-square="f1"]');
+  assert.match(await ask("O que faço com esse bispo agora?"), /bispo em f1, analise/);
+  await page.waitForSelector("#board .arrow-success");
+  await mkdir("docs", { recursive: true });
+  await page.screenshot({ path: "docs/coach-game.png", fullPage: true });
+
+  await page.select("#side", "black");
+  await page.waitForFunction(() => document.querySelector("#turn").textContent.includes("Sua vez · pretas"));
+  assert.match(await page.$eval("#move-readout", (node) => node.textContent), /Bot jogou/);
+
+  await page.select("#cases", "queen-trade");
+  await page.waitForFunction(() => !document.querySelector("#play").disabled &&
+    [...document.querySelector("#keyboard-move").options].some(({ value }) => value === "c8f5"));
+  assert.deepEqual(await page.select("#keyboard-move", "c8f5"), ["c8f5"]);
+  await page.click("#play");
+  await page.waitForFunction(() => document.querySelector("#move-readout").textContent.includes("Bf5"));
+  const advice = await ask("O que fazer com o bispo depois?");
+  assert.match(advice, /bispo em f5.*dama com Qxe5/);
+  await page.waitForSelector("#board .arrow-danger");
   await page.click("#reveal");
   await page.waitForFunction(() => !document.querySelector("#steps").hidden);
   await page.click("#next");
-  await page.click("#next");
-  assert.match(await page.$eval("#line", (node) => node.textContent), /Bxe2/);
-  await page.waitForSelector('#board g[data-piece="wb"][data-square="e2"] use');
-  await mkdir("docs", { recursive: true });
-  await page.screenshot({ path: "docs/demo.png", fullPage: true });
+  await page.waitForFunction(() => document.querySelector("#line").textContent.includes("Qxe5"));
+  assert.doesNotMatch(await ask("O que fazer com o bispo depois?"), /dama com Qxe5/);
+
   await page.setViewport({ width: 390, height: 844 });
   const geometry = await page.evaluate(() => ({
     fits: document.documentElement.scrollWidth <= 390,
@@ -59,9 +77,9 @@ try {
       document.querySelector("#board").getBoundingClientRect().bottom,
   }));
   assert.deepEqual(geometry, { fits: true, stacks: true });
-  await page.screenshot({ path: "docs/demo-mobile.png", fullPage: true });
+  await page.screenshot({ path: "docs/coach-mobile.png", fullPage: true });
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ first, second, geometry, replay: "Qxe2+, Bxe2" }, null, 2));
+  console.log(JSON.stringify({ advice, geometry, black: "bot opened", replay: "Bf5 Qxe5" }, null, 2));
 } finally {
   await browser.close();
 }

@@ -1,0 +1,80 @@
+{
+  "rows": [
+    {
+      "question": "O que eu faço com esse bispo agora?",
+      "expected": "plan",
+      "rules": "plan",
+      "base": "safety"
+    },
+    {
+      "question": "Vale a pena desenvolver meu cavalo?",
+      "expected": "plan",
+      "rules": "plan",
+      "base": "safety"
+    },
+    {
+      "question": "Qual seria um bom plano pra torre?",
+      "expected": "plan",
+      "rules": "plan",
+      "base": "plan"
+    },
+    {
+      "question": "Que ideia você sugere para a dama?",
+      "expected": "plan",
+      "rules": "plan",
+      "base": "safety"
+    },
+    {
+      "question": "Meu bispo está ameaçado?",
+      "expected": "safety",
+      "rules": "safety",
+      "base": "safety"
+    },
+    {
+      "question": "Quem protege esse peão?",
+      "expected": "safety",
+      "rules": "safety",
+      "base": "safety"
+    },
+    {
+      "question": "Minha torre ficou pendurada?",
+      "expected": "safety",
+      "rules": "safety",
+      "base": "safety"
+    },
+    {
+      "question": "Tem risco de perder o cavalo?",
+      "expected": "safety",
+      "rules": "plan",
+      "base": "safety"
+    },
+    {
+      "question": "Em quais casas o cavalo pode jogar?",
+      "expected": "mobility",
+      "rules": "mobility",
+      "base": "safety"
+    },
+    {
+      "question": "Quais lances são legais para o bispo?",
+      "expected": "mobility",
+      "rules": "mobility",
+      "base": "safety"
+    },
+    {
+      "question": "Onde posso mover essa torre?",
+      "expected": "mobility",
+      "rules": "mobility",
+      "base": "mobility"
+    },
+    {
+      "question": "Quantas opções tenho com a dama?",
+      "expected": "mobility",
+      "rules": "mobility",
+      "base": "safety"
+    }
+  ],
+  "correct": {
+    "rules": 11,
+    "base": 6
+  }
+}

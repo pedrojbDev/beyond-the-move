@@ -40,9 +40,11 @@ Only the fixed template task and explicit notation rates are scored
 automatically; a short text review found systematic focus mistakes, not a
 validated guarantee that a question is accurate, helpful or spoiler-free.
 
-## Browser smoke
+## Historical browser smoke
 
-With Firefox, Node.js and the app running with `COACH_ADAPTER_PATH=model`:
+The instructions below are for the `v1.0.0` tag and its archived rationale-hint
+UI and browser script. The current UI is covered in [Position-aware coaching](piece-coach.md).
+With Firefox, Node.js and the historical app running with `COACH_ADAPTER_PATH=model`:
 
 ```sh
 npm install --prefix .local/tools puppeteer-core@24.12.1
