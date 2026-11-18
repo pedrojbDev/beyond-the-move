@@ -4,7 +4,9 @@ import threading
 from collections.abc import Callable
 from functools import lru_cache
 from pathlib import Path
+from typing import Annotated, Literal
 
+import chess
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -13,6 +15,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from .coaching import fallback, parse_hint
 from .domain import CASES, facts_for, play, replay
 from .engine import EngineUnavailable, variation
+from .piece_coach import advice, board_from, move_info, simple_move, snapshot
 
 STATIC = Path(__file__).parent / "static"
 LOGGER = logging.getLogger(__name__)
@@ -28,6 +31,34 @@ class MoveIn(BaseModel):
 
 class HintIn(MoveIn):
     reason: str = Field(min_length=3, max_length=280)
+
+
+Uci = Annotated[str, Field(pattern=r"^[a-h][1-8][a-h][1-8][qrbn]?$")]
+
+
+class GameIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    history: list[Uci] = Field(default_factory=list, max_length=500)
+
+
+class BotIn(GameIn):
+    side: Literal["white", "black"]
+
+
+class AdviceIn(GameIn):
+    case_id: str | None = Field(default=None, min_length=1, max_length=32)
+    side: Literal["white", "black"] = "white"
+    square: str = Field(pattern=r"^[a-h][1-8]$")
+    question: str = Field(min_length=3, max_length=240)
+
+
+def _position(body: GameIn, case_id: str | None = None) -> chess.Board:
+    try:
+        return board_from(body.history, case_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Unknown exercise.") from exc
+    except ValueError as exc:
+        raise HTTPException(422, "Illegal game history.") from exc
 
 
 def _legal(body: MoveIn):
@@ -48,6 +79,32 @@ def create_app(
     @app.get("/api/cases")
     def cases():
         return [case.public() for case in CASES]
+
+    @app.post("/api/game")
+    def game(body: GameIn):
+        return snapshot(_position(body))
+
+    @app.post("/api/bot")
+    def bot(body: BotIn):
+        board = _position(body)
+        if board.turn == (body.side == "white") or board.is_game_over():
+            raise HTTPException(409, "No bot move is available.")
+        move = simple_move(board)
+        info = move_info(board, move)
+        board.push(move)
+        return {**snapshot(board), "move": info["uci"], "san": info["san"]}
+
+    @app.post("/api/advice")
+    def piece_advice(body: AdviceIn):
+        board = _position(body, body.case_id)
+        if len(body.question.strip()) < 3:
+            raise HTTPException(422, "Write a question.")
+        try:
+            return advice(
+                board, chess.parse_square(body.square), body.side == "white", body.question, binary
+            )
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
 
     @app.post("/api/hint")
     def hint(body: HintIn):

@@ -15,13 +15,17 @@
   <header>
     <span class="eyebrow">ESTÚDIO DE XADREZ · 01</span>
     <h1>Além do <em>Lance.</em></h1>
-    <p>Jogue uma ideia. Descubra o que você deixou passar.</p>
+    <p>Jogue contra o bot. Pare para entender uma posição.</p>
   </header>
   <section class="desk" aria-label="Mesa de treino">
     <div class="board-panel">
       <div class="toolbar">
-        <label for="cases">Posição de treino</label>
-        <select id="cases" disabled></select>
+        <label for="cases">Modo</label>
+        <select id="cases" disabled><option value="game">Partida contra o bot</option></select>
+        <div id="side-control">
+          <label for="side">Você joga de</label>
+          <select id="side"><option value="white">Brancas</option><option value="black">Pretas</option></select>
+        </div>
       </div>
       <div id="board" aria-label="Tabuleiro interativo"></div>
       <p id="turn" class="caption" aria-live="polite">Carregando o tabuleiro…</p>
@@ -29,28 +33,33 @@
         <label for="keyboard-move">Lances pelo teclado</label>
         <select id="keyboard-move" disabled></select>
         <button id="play" class="quiet" type="button" disabled>Jogar</button>
+        <button id="fetch-bot" class="quiet" type="button" hidden>Tentar resposta do bot</button>
         <button id="reset" class="quiet" type="button" disabled>Recomeçar</button>
       </div>
     </div>
     <div class="coach-panel">
       <section class="card">
-        <span class="eyebrow">01 / O PENSAMENTO</span>
-        <h2>Qual foi sua ideia?</h2>
-        <p id="move-readout" aria-live="polite">Escolha uma peça e faça um lance.</p>
-        <button class="quiet" id="example" type="button" disabled>Usar lance de exemplo</button>
+        <span class="eyebrow">01 / TREINADOR</span>
+        <h2>O que fazer agora?</h2>
+        <p>Clique numa peça ou escolha abaixo. Não precisa jogar antes de perguntar.</p>
+        <label for="piece">Peça para analisar</label>
+        <select id="piece" disabled></select>
+        <p id="move-readout" class="caption" aria-live="polite"></p>
+        <button class="quiet" id="example" type="button" hidden>Usar lance de exemplo</button>
         <form id="coach">
-          <label for="reason">Sua justificativa</label>
-          <textarea id="reason" rows="3" maxlength="280" minlength="3" required
-            placeholder="Ex.: Queria simplificar e ir para um final."></textarea>
-          <button id="ask" type="submit" disabled>Pedir uma pista</button>
+          <label for="reason">Sua pergunta</label>
+          <textarea id="reason" rows="2" maxlength="240" minlength="3" required
+            placeholder="Ex.: O que eu faço com esse bispo agora?"></textarea>
+          <button id="ask" type="submit" disabled>Perguntar ao treinador</button>
         </form>
         <div id="feedback" class="feedback" aria-live="polite" hidden>
           <span id="source" class="eyebrow"></span>
           <p id="hint"></p>
+          <p id="why" class="caption"></p>
         </div>
         <p id="error" class="error" role="status"></p>
       </section>
-      <section class="card replay">
+      <section id="replay" class="card replay" hidden>
         <span class="eyebrow">02 / NO TABULEIRO</span>
         <h2>E se o adversário responder?</h2>
         <button id="reveal" class="quiet" type="button" disabled>Revelar variante</button>
@@ -64,7 +73,7 @@
       </section>
     </div>
   </section>
-  <footer>Prática offline · Variante calculada pelo Stockfish · Dicas experimentais em português</footer>
+  <footer>Prática local · Bot de treino simples · Recomendações verificadas pelo Stockfish quando disponível</footer>
 </main>
 </body>
 </html>
